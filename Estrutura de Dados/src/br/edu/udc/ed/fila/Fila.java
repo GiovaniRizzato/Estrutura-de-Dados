@@ -1,6 +1,8 @@
 package br.edu.udc.ed.fila;
 
-import br.edu.udc.ed.iteradores.Iterator;
+import br.edu.udc.ed.iteradores.Iterador;
+
+//TODO alterar todos os vetores para Array
 import br.edu.udc.ed.vetor.Vetor;
 
 /**
@@ -17,33 +19,38 @@ import br.edu.udc.ed.vetor.Vetor;
  * 
  * Desta forma vai ser nomeado os atributos e sub-atributos desta classe.
  * ------------------------------------------------------------------------------
- * Sobre Iterator:
- * 
- * O Iterator concreto implementado nesta classe foi feito para que seja
- * execultado operações nos objetos contidos na estrutura sem que seja alterado
- * a estrutura em sí ,OU SEJA, nenhuma operação de lista como: Adiciona, Exclui
- * será feita pelo Iterator intencionalmente para garantir as propriedades de
- * Fila.
- * ------------------------------------------------------------------------------
  * 
  * @category Estrutura de dados - concreta
- * @param Object
+ * @param Object<T>
  * @author Giovani Rizzato<giovanirizzato@gmail.com>
  */
 
 public class Fila<T> {
 
-	public Iterator<T> inicio() {
-		return new IteradorFila<T>(this.inicio);
-	}
-
-	public Iterator<T> fim() {
-		return new IteradorFila<T>(this.fim);
-	}
-
 	private int tamanho;
 	private No<T> fim;
 	private No<T> inicio;
+
+	public Fila() {
+		this.fim = this.inicio = null;
+		this.tamanho = 0;
+	}
+
+	public Fila(Vetor<T> vetor) {
+
+		this.fim = this.inicio = null;
+		this.tamanho = 0;
+
+		this.adiciona(vetor);
+	}
+
+	public Iterador<T> inicio() {
+		return new IteradorFila<T>(this.inicio);
+	}
+
+	public Iterador<T> fim() {
+		return new IteradorFila<T>(this.fim);
+	}
 
 	public int tamanho() {
 		return this.tamanho;
@@ -71,7 +78,6 @@ public class Fila<T> {
 
 	public int adiciona(Vetor<T> grupoElementos) {
 
-		// TODO voltar para Array simples após a implementação do toArray
 		int numeroElementosAdicionados = 0;
 
 		for (int i = 0; i < grupoElementos.tamanho(); i++) {
@@ -110,21 +116,6 @@ public class Fila<T> {
 		this.tamanho--;
 		return noRemovido.dado;
 	}
-	
-	public void removeTodos() {
-
-		// Irá eliminar o elemento inicio até que de
-		// erro por deletar na lista vazia
-		while (true) {
-
-			try {
-				this.remove();
-			} catch (RuntimeException e) {
-				break;
-			}
-
-		}
-	}
 
 	public T consultaProximoElemento() {
 
@@ -139,7 +130,7 @@ public class Fila<T> {
 	public boolean contem(T Object) {
 
 		if (Object == null) {
-			throw new NullPointerException();
+			return false;
 		}
 
 		No<T> cursor = this.fim;
@@ -156,13 +147,12 @@ public class Fila<T> {
 
 	public Vetor<T> toVetor() {
 
-		// TODO mudar para Array simples(reflections)
 		Vetor<T> vetor = new Vetor<>();
 		No<T> cursor = this.inicio;
 
 		while (cursor != null) {
 			vetor.adiciona(cursor.dado);
-			cursor = cursor.proximo;
+			cursor = cursor.anterior;
 		}
 
 		return vetor;
@@ -194,7 +184,7 @@ public class Fila<T> {
 			return true;
 
 		No<T> cursor = this.inicio;
-		Iterator<T> it = ((Fila<T>) obj).inicio();
+		Iterador<T> it = ((Fila<T>) obj).inicio();
 
 		while (it.temProximo()) {
 			if (!(cursor.dado.equals(it.getDado()))) {
@@ -206,5 +196,17 @@ public class Fila<T> {
 		}
 
 		return true;
+	}
+
+	@Override
+	public void finalize() {
+
+		while (true) {
+			try {
+				this.remove();
+			} catch (RuntimeException e) {
+				break;
+			}
+		}
 	}
 }

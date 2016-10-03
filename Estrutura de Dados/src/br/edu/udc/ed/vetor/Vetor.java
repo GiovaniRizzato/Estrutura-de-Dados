@@ -179,21 +179,22 @@ public class Vetor<T> {
 	@Override
 	public String toString() {
 
-		String stringAcomulador = new String();
+		StringBuffer stringAcomulador = new StringBuffer();
 
-		stringAcomulador = stringAcomulador.concat(String.format("["));
+		stringAcomulador.append("[");
 
 		// Acomula os numeros dentro dos conchets
 		for (int i = 0; i < this.tamanho; i++) {
-			stringAcomulador = stringAcomulador.concat(String.format("%s,", vetor[i].toString()));
+			stringAcomulador.append(vetor[i].toString());
+			stringAcomulador.append(",");
 		}
 
-		if (stringAcomulador.endsWith(",")) {
-			stringAcomulador = stringAcomulador.substring(0, stringAcomulador.length() - 1);
+		if (stringAcomulador.charAt(stringAcomulador.length() - 1) == ',') {
+			stringAcomulador.deleteCharAt(stringAcomulador.length() - 1);
 		}
 
-		stringAcomulador = stringAcomulador.concat(String.format("]"));
+		stringAcomulador.append("]");
 
-		return stringAcomulador;
+		return stringAcomulador.toString();
 	}
 }

@@ -1,16 +1,16 @@
 package br.edu.udc.ed.lista;
 
 import br.edu.udc.ed.iteradores.IteradorManipulador;
-import br.edu.udc.ed.iteradores.Iterator;
+import br.edu.udc.ed.iteradores.Iterador;
 import br.edu.udc.ed.vetor.Vetor;
 
 public class Lista<T> {
-	
+
 	No<T> inicio;
 	No<T> fim;
 
 	int tamanho;
-	
+
 	public Lista() {
 		this.inicio = this.fim = null;
 		this.tamanho = 0;
@@ -35,25 +35,25 @@ public class Lista<T> {
 		if (elementoAdicionado == null)
 			throw new NullPointerException();
 
-		if (inicio == null) {// lista vazia
+		if (this.inicio == null) {// lista vazia
 
 			noAdicionado = new No<>(elementoAdicionado);
-			inicio = fim = noAdicionado;
+			this.inicio = this.fim = noAdicionado;
 		} else {// já existem elementos na lista
 
 			if (posicao <= 1) {// inserir no inicio da lista
 
-				noAdicionado = new No<>(inicio, null, elementoAdicionado);
-				inicio.anterior = noAdicionado;
-				inicio = noAdicionado;
+				noAdicionado = new No<>(this.inicio, null, elementoAdicionado);
+				this.inicio.anterior = noAdicionado;
+				this.inicio = noAdicionado;
 			} else if (posicao >= tamanho) {// inserir no final da lista
 
-				noAdicionado = new No<>(null, fim, elementoAdicionado);
-				fim.proximo = noAdicionado;
-				fim = noAdicionado;
+				noAdicionado = new No<>(null, this.fim, elementoAdicionado);
+				this.fim.proximo = noAdicionado;
+				this.fim = noAdicionado;
 			} else {// inserir no meio da lista
 
-				No<T> cursor = inicio;
+				No<T> cursor = this.inicio;
 				while (posicao > 0) {
 					cursor = cursor.proximo;
 					posicao--;
@@ -142,26 +142,37 @@ public class Lista<T> {
 	}
 
 	public T consulta(int pos) {
-		if (inicio == null)// se a lista está vazia
+
+		if (pos < 0 || pos > this.tamanho) {
+			throw new IndexOutOfBoundsException("Posição invalida");
+		}
+
+		if (this.inicio == null) {
+			// Se a lista está vazia
 			return null;
+		}
 
-		if (inicio == fim)// se existe apenas um elemento na lista
-			return inicio.dado;
+		if (this.inicio == this.fim) {
+			// Se existe apenas um elemento na lista
+			return this.inicio.dado;
+		}
 
-		if (pos == 0)// consulta o primeiro elemento da lista
-			return inicio.dado;
+		if (pos == 0) {
+			// consulta o primeiro elemento da lista
+			return this.inicio.dado;
+		}
 
-		else if (pos >= tamanho - 1)// consulta o último elemento da lista
-			return fim.dado;
-
-		else // consulta um elemento no meio da lista
-		{
-			No<T> cursor = inicio;
+		else if (pos == this.tamanho) {
+			// consulta o último elemento da lista
+			return this.fim.dado;
+		} else {
+			// consulta um elemento no meio da lista
+			No<T> cursor = this.inicio;
 			while (pos > 0) {
 				cursor = cursor.proximo;
 				pos--;
 			}
-			// consulta o elemento aux
+			// consulta o elemento cursor
 			return cursor.dado;
 		}
 	}
@@ -192,7 +203,7 @@ public class Lista<T> {
 			return true;
 
 		No<T> cursor = this.inicio;
-		Iterator<T> it = ((Lista<T>) obj).inicio();
+		Iterador<T> it = ((Lista<T>) obj).inicio();
 
 		while (it.temProximo()) {
 			if (!(cursor.dado.equals(it.getDado()))) {

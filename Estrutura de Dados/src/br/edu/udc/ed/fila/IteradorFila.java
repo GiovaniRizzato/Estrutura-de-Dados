@@ -1,8 +1,8 @@
 package br.edu.udc.ed.fila;
 
-import br.edu.udc.ed.iteradores.Iterator;
+import br.edu.udc.ed.iteradores.Iterador;
 
-class IteradorFila<T> implements Iterator<T> {
+class IteradorFila<T> implements Iterador<T> {
 
 	No<T> cursor;
 
