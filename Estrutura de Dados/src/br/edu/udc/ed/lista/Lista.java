@@ -75,7 +75,6 @@ public class Lista<T> {
 
 	public int adiciona(Vetor<T> grupoElementos) {
 
-		// TODO voltar para Array simples após a implementação do toArray
 		int numeroElementosAdicionados = 0;
 
 		for (int i = 0; i < grupoElementos.tamanho(); i++) {
@@ -179,7 +178,6 @@ public class Lista<T> {
 
 	public Vetor<T> toVetor() {
 
-		// TODO mudar para Array simples(reflections)
 		Vetor<T> vetor = new Vetor<>();
 		No<T> cursor = this.inicio;
 

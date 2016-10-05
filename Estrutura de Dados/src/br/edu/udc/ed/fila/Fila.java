@@ -2,7 +2,6 @@ package br.edu.udc.ed.fila;
 
 import br.edu.udc.ed.iteradores.Iterador;
 
-//TODO alterar todos os vetores para Array
 import br.edu.udc.ed.vetor.Vetor;
 
 /**
@@ -101,7 +100,7 @@ public class Fila<T> {
 
 		if (this.tamanho == 0)// não há elementos para remover
 			throw new RuntimeException("Fila está vazia! Não há elementos para remover");
-		// TODO procurar uma exeção que expresse melhor está situação
+		//TODO [Professor] procurar melhor exeção para este caso
 
 		if (this.fim == this.inicio) {// tem apenas um elemento ou null
 			noRemovido = this.fim;
