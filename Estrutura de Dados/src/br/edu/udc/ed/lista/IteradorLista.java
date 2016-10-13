@@ -110,9 +110,12 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 
 		if (this.cursor == null) {// lista vazia
 			throw new RuntimeException("Fila está vazia! Não há elementos para remover");
+		}
 
-		} else if (this.referenciaLista.tamanho() < 2) {// apenas 1 elemento
-			this.referenciaLista.remove(0);
+		if (this.referenciaLista.fim == this.referenciaLista.inicio) {
+			// apenas 1 elemento
+			this.referenciaLista.fim = null;
+			this.referenciaLista.inicio = null;
 			this.cursor = null;
 
 		} else {// existe mais de um elemento na lista
@@ -125,16 +128,16 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 			} else {
 				this.cursor = this.cursor.anterior;
 			}
-			
-			//removendo das referencias do "proximo"
+
+			// removendo das referencias do "proximo"
 			if (noRemovido.proximo != null) {
 				noRemovido.proximo.anterior = noRemovido.anterior;
 			} else {// esta no fim da lista
 				this.referenciaLista.fim = noRemovido.anterior;
 				// this.referenciaLista.reposicionaFim();
 			}
-			
-			//removendo das referencias do "anterior"
+
+			// removendo das referencias do "anterior"
 			if (noRemovido.anterior != null) {
 				noRemovido.anterior.proximo = noRemovido.proximo;
 			} else {// esta no inicio da lista

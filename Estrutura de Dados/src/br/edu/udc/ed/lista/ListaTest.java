@@ -157,22 +157,6 @@ public class ListaTest {
 		fail("RunTime not triggered");
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void removeTodos() {
-		Lista<Integer> lista = new Lista<>();
-
-		for (int i = 0; i < 15; i++) {
-			lista.adiciona(i);
-		}
-		assertEquals(15, lista.tamanho());
-
-		lista.removeTodos();
-		assertEquals(0, lista.tamanho());
-
-		lista.remove(0);
-		fail("Deveria estar vazia e não poderia eleminar ninguem");
-	}
-
 	// Consulta
 	@Test
 	public void consulta_CasoFeliz() {

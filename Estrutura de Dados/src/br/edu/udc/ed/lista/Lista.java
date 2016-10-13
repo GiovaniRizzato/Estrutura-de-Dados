@@ -125,18 +125,15 @@ public class Lista<T> {
 		this.tamanho--;
 	}
 
-	public void removeTodos() {
+	@Override
+	public void finalize() {
 
-		// Irá eliminar o elemento inicio até que de
-		// erro por deletar na lista vazia
 		while (true) {
-
 			try {
 				this.remove(0);
 			} catch (RuntimeException e) {
 				break;
 			}
-
 		}
 	}
 
