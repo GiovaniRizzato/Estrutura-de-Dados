@@ -57,4 +57,10 @@ public class ConjuntoAmostral<T> extends Vetor<T> {
 
 		return super.obtem(posicaoModaAtual);
 	}
+	
+	@Override
+	public ConjuntoAmostral<T> clone() {
+
+		return (ConjuntoAmostral<T>) super.clone();
+	}
 }

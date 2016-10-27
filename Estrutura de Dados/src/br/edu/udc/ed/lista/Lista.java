@@ -137,7 +137,7 @@ public class Lista<T> {
 		}
 	}
 
-	public T consulta(int pos) {
+	public T obtem(int pos) {
 
 		if (pos < 0 || pos > this.tamanho) {
 			throw new IndexOutOfBoundsException("Posição invalida");

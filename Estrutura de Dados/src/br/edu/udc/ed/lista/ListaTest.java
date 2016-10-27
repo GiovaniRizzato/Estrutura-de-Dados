@@ -167,7 +167,7 @@ public class ListaTest {
 		}
 
 		for (int i = 0; i < 15; i++) {
-			assertEquals((Integer) i, lista.consulta(i));
+			assertEquals((Integer) i, lista.obtem(i));
 		}
 	}
 
@@ -175,6 +175,6 @@ public class ListaTest {
 	public void consulta_null() {
 
 		Lista<Integer> lista = new Lista<>();
-		assertNull(lista.consulta(0));
+		assertNull(lista.obtem(0));
 	}
 }
