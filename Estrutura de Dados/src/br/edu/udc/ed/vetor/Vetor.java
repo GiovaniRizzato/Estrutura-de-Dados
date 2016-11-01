@@ -2,13 +2,26 @@ package br.edu.udc.ed.vetor;
 
 import java.util.Random;
 
-public class Vetor<T> {
+import br.edu.udc.ed.icollection.ICollection;
+import br.edu.udc.ed.iteradores.Iterador;
+
+public class Vetor<T> implements ICollection<T> {
 
 	@SuppressWarnings("unchecked")
 	private T vetor[] = (T[]) new Object[100];
 	// Inicializando um array de Object com capacidade 100.
 
 	private int tamanho = 0;
+
+	@Override
+	public Iterador<T> inicio() {
+		return new IteradorVetor<>(0, this);
+	}
+
+	@Override
+	public Iterador<T> fim() {
+		return new IteradorVetor<>(this.tamanho, this);
+	}
 
 	public void adiciona(T object) {
 		this.verificaCapacidade();
@@ -39,7 +52,7 @@ public class Vetor<T> {
 
 	public void sobrepoemPosicao(T object, int posicao) {
 		// É um metodo que faz sobreosicação do Object na posição solicitada
-		if (!this.posicaoOcupada(posicao) && posicao != this.tamanho)
+		if (!this.posicaoOcupada(posicao))
 
 			throw new IndexOutOfBoundsException("Posição Invalida");
 
@@ -67,6 +80,7 @@ public class Vetor<T> {
 		this.tamanho--;
 	}
 
+	@Override
 	public boolean contem(T object) {
 		for (int i = 0; i < this.tamanho; i++) {
 			if (object.equals(this.vetor[i])) {
@@ -76,6 +90,7 @@ public class Vetor<T> {
 		return false;
 	}
 
+	@Override
 	public int tamanho() {
 		return this.tamanho;
 	}
@@ -104,7 +119,7 @@ public class Vetor<T> {
 		return array;
 	}
 
-	public void shuffle() {
+	public void randomiza() {
 
 		final Random random = new Random();
 
