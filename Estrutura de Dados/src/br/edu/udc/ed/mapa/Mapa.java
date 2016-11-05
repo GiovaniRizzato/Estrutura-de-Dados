@@ -11,7 +11,7 @@ public class Mapa<C, V> {
 	public Mapa() {
 
 		for (int i = 0; i < TAMANHO_MINIMO; i++) {
-			tabela.adiciona(new Vetor<>());
+			tabela.adiciona(new Vetor<Associacao<C, V>>());
 		}
 	}
 

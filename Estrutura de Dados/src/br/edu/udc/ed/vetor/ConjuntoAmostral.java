@@ -1,10 +1,6 @@
 package br.edu.udc.ed.vetor;
 
-public class ConjuntoAmostral<T> extends Vetor<T> {
-
-	public ConjuntoAmostral() {
-		// TODO Método para verificar se <T> é numérico
-	}
+public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 
 	private Vetor<T> produzirRol() {
 
@@ -17,7 +13,6 @@ public class ConjuntoAmostral<T> extends Vetor<T> {
 
 		// TODO Fazer com que o java entenda que <T> é numérico
 
-		// T somatorio = 0;
 		float somatorio = 0;
 
 		for (int i = 0; i < super.tamanho(); i++) {
@@ -60,7 +55,6 @@ public class ConjuntoAmostral<T> extends Vetor<T> {
 	
 	@Override
 	public ConjuntoAmostral<T> clone() {
-
 		return (ConjuntoAmostral<T>) super.clone();
 	}
 }
