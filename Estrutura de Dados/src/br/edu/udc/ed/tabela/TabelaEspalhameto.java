@@ -3,7 +3,7 @@ package br.edu.udc.ed.tabela;
 import br.edu.udc.ed.iteradores.Iterador;
 import br.edu.udc.ed.lista.vetor.Vetor;
 
-public class TabelaEspalhameto<T> {
+public class TabelaEspalhameto<T>{
 	private Vetor<Vetor<T>> tabela = new Vetor<Vetor<T>>();
 	private final short TAMANHO_MINIMO = 10;
 	private int tamanho = 0;
@@ -21,10 +21,6 @@ public class TabelaEspalhameto<T> {
 
 	public Iterador<T> inicio() {
 		return new IteradorTabela<T>(this.tabela, 0, 0);
-	}
-
-	public Iterador<T> fim() {
-		return new IteradorTabela<T>(this.tabela, this.tabela.tamanho(), this.tamanho);
 	}
 
 	private void redimencionarTabela(int novaCapacidade) {

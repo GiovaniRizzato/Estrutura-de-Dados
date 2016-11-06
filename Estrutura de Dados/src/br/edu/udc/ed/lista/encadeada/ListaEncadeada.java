@@ -2,8 +2,7 @@ package br.edu.udc.ed.lista.encadeada;
 
 import br.edu.udc.ed.iteradores.IteradorManipulador;
 import br.edu.udc.ed.lista.Lista;
-import br.edu.udc.ed.icollection.Colecao;
-import br.edu.udc.ed.icollection.ColecaoIteravel;
+import br.edu.udc.ed.colecao.ColecaoIteravel;
 import br.edu.udc.ed.iteradores.Iterador;
 
 public class ListaEncadeada<T> implements Lista<T> {
@@ -22,11 +21,6 @@ public class ListaEncadeada<T> implements Lista<T> {
 	@Override
 	public IteradorManipulador<T> inicio() {
 		return new IteratorLista<>(this.inicio, this);
-	}
-
-	@Override
-	public IteradorManipulador<T> fim() {
-		return new IteratorLista<>(this.fim, this);
 	}
 
 	@Override

@@ -23,12 +23,6 @@ public class IteradorListaTest {
 			assertEquals(i, it.getDado());
 			i++;
 		}
-
-		i = 14;
-		for (Iterador<Integer> it = lista.fim(); it.temAnterior(); it.anterior()) {
-			assertEquals(i, it.getDado());
-			i--;
-		}
 	}
 
 	// ADICIONAR

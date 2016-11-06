@@ -13,11 +13,6 @@ class IteradorVetor<T> implements Iterador<T> {
 	}
 
 	@Override
-	public void anterior() {
-		this.index--;
-	}
-
-	@Override
 	public void proximo() {
 		this.index++;
 	}
@@ -25,14 +20,6 @@ class IteradorVetor<T> implements Iterador<T> {
 	@Override
 	public boolean temProximo() {
 		if (this.referenciaVetor.tamanho() > this.index) {
-			return true;
-		} else
-			return false;
-	}
-
-	@Override
-	public boolean temAnterior() {
-		if (this.index > 0) {
 			return true;
 		} else
 			return false;

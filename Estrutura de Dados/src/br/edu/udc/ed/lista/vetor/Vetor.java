@@ -1,7 +1,8 @@
 package br.edu.udc.ed.lista.vetor;
 
 import java.util.Random;
-import br.edu.udc.ed.icollection.ColecaoIteravel;
+
+import br.edu.udc.ed.colecao.ColecaoIteravel;
 import br.edu.udc.ed.iteradores.Iterador;
 import br.edu.udc.ed.lista.Lista;
 
@@ -16,11 +17,6 @@ public class Vetor<T> implements Lista<T> {
 	@Override
 	public Iterador<T> inicio() {
 		return new IteradorVetor<>(0, this);
-	}
-
-	@Override
-	public Iterador<T> fim() {
-		return new IteradorVetor<>(this.tamanho, this);
 	}
 
 	public void adiciona(T object) {
@@ -38,7 +34,7 @@ public class Vetor<T> implements Lista<T> {
 	}
 
 	public void adiciona(ColecaoIteravel<T> colecao) {
-		
+
 		Iterador<T> it = colecao.inicio();
 		while (it.temProximo()) {
 			this.adiciona(it.getDado());
@@ -143,26 +139,11 @@ public class Vetor<T> implements Lista<T> {
 		}
 	}
 
-	public void organizaCrascente() {
-
-		for (int i = 0; i < this.tamanho; i++) {
-
-			int posicaoTroca = i;
-			for (int j = i + 1; j < this.tamanho; j++) {
-				// procura desde elemento para frente, pois, os anteriores já
-				// foram processador e são menores.
-
-				if (vetor[posicaoTroca].hashCode() > vetor[j].hashCode()) {
-					// procura a posicao de um elemento menor da lista de i~"fim
-					// do vetor"
-					posicaoTroca = j;
-				}
-			}
-
-			// faz a troca dos elementos
-			T bufferTroca = vetor[i];
-			vetor[i] = vetor[posicaoTroca];
-			vetor[posicaoTroca] = bufferTroca;
+	protected void trocaPosicoes(int pos1, int pos2) {
+		if (pos1 != pos2) {
+			T bufferTroca = vetor[pos2];
+			vetor[pos2] = vetor[pos1];
+			vetor[pos1] = bufferTroca;
 		}
 	}
 

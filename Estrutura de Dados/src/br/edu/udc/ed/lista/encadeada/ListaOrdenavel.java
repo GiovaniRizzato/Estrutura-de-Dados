@@ -1,7 +1,7 @@
 package br.edu.udc.ed.lista.encadeada;
 
+import br.edu.udc.ed.colecao.Comparavel;
 import br.edu.udc.ed.lista.Ordenavel;
-import br.edu.udc.ed.ordenacao.Comparavel;
 
 public class ListaOrdenavel<T extends Comparavel> extends ListaEncadeada<T> implements Ordenavel<T> {
 

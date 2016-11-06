@@ -1,4 +1,4 @@
-package br.edu.udc.ed.ordenacao;
+package br.edu.udc.ed.colecao;
 
 public interface Comparavel {
 

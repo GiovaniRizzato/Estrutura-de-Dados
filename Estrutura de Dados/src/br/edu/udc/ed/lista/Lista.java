@@ -1,6 +1,6 @@
 package br.edu.udc.ed.lista;
 
-import br.edu.udc.ed.icollection.ColecaoIteravel;
+import br.edu.udc.ed.colecao.ColecaoIteravel;
 
 public interface Lista<T> extends ColecaoIteravel<T> {
 

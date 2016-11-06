@@ -1,4 +1,4 @@
-package br.edu.udc.ed.icollection;
+package br.edu.udc.ed.colecao;
 
 public interface Colecao<T> {
 

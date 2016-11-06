@@ -1,11 +1,29 @@
 package br.edu.udc.ed.lista.vetor;
 
-public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
+import br.edu.udc.ed.lista.Lista;
 
-	private Vetor<T> produzirRol() {
+public class ConjuntoAmostral<T extends Float> extends Vetor<T> {
 
-		Vetor<T> rol = super.clone();
-		rol.organizaCrascente();
+	private Lista<T> produzirRol() {
+
+		Lista<T> rol = super.clone();
+		for (int pivo = 0; pivo < super.tamanho(); pivo++) {
+
+			int posicaoTroca = pivo;
+			for (int procurador = pivo + 1; procurador < super.tamanho(); procurador++) {
+				// procura desde elemento para frente, pois, os anteriores já
+				// foram processador e são menores.
+
+				if (super.obtem(posicaoTroca) < super.obtem(procurador)) {
+					// procura a posicao de um elemento menor da lista de i~"fim
+					// do vetor"
+					posicaoTroca = procurador;
+				}
+			}
+
+			// faz a troca dos elementos
+			super.trocaPosicoes(posicaoTroca, pivo);
+		}
 		return rol;
 	}
 
@@ -13,10 +31,10 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 
 		// TODO Fazer com que o java entenda que <T> é numérico
 
-		float somatorio = 0;
+		Float somatorio = 0F;
 
 		for (int i = 0; i < super.tamanho(); i++) {
-			somatorio += (float) super.obtem(i);
+			somatorio = somatorio + super.obtem(i);
 		}
 
 		return somatorio / super.tamanho();
@@ -24,13 +42,13 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 
 	public T mediana() {
 
-		Vetor<T> rol = this.produzirRol();
+		Lista<T> rol = this.produzirRol();
 		return rol.obtem(rol.tamanho() / 2);
 	}
 
 	public T moda() {
 
-		Vetor<T> rol = this.produzirRol();
+		Lista<T> rol = this.produzirRol();
 
 		int qtdModaAtual = 0;
 		int posicaoModaAtual = 0;

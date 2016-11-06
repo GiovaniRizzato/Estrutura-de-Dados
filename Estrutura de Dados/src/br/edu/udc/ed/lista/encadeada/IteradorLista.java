@@ -14,15 +14,6 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 	}
 
 	@Override
-	public void anterior() {
-		if (cursor != null) {
-			this.cursor = this.cursor.anterior;
-		} else {
-			throw new NullPointerException("Não existe anterior para ser iterado");
-		}
-	}
-
-	@Override
 	public void proximo() {
 		if (cursor != null) {
 			this.cursor = this.cursor.proximo;
@@ -33,14 +24,6 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 
 	@Override
 	public boolean temProximo() {
-		if (this.cursor != null) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean temAnterior() {
 		if (this.cursor != null) {
 			return true;
 		}

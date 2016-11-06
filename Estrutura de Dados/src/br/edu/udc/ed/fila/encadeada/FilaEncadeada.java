@@ -1,7 +1,8 @@
 package br.edu.udc.ed.fila.encadeada;
 
+import br.edu.udc.ed.colecao.ColecaoIteravel;
 import br.edu.udc.ed.fila.Fila;
-import br.edu.udc.ed.icollection.ColecaoIteravel;
+import br.edu.udc.ed.iteradores.Iterador;
 
 /**
  * ------------------------------------------------------------------------------
@@ -23,7 +24,7 @@ import br.edu.udc.ed.icollection.ColecaoIteravel;
  * @author Giovani Rizzato<giovanirizzato@gmail.com>
  */
 
-public class FilaEncadeada<T> implements Fila<T>{
+public class FilaEncadeada<T> implements Fila<T> {
 
 	private int tamanho;
 	private No<T> fim;
@@ -41,19 +42,24 @@ public class FilaEncadeada<T> implements Fila<T>{
 
 		this.adiciona(vetor);
 	}
-	
-	//Métodos de "Coleção"
+
+	// Métodos de "Coleção"
 	public int tamanho() {
 		return this.tamanho;
 	}
-	
+
 	@Override
 	public boolean contem(T object) {
 		// TODO Fila - contem
 		return false;
 	}
-	
-	//Métodos de "Fila"
+
+	@Override
+	public Iterador<T> inicio() {
+		return new IteradorFila<T>(this, this.tamanho);
+	}
+
+	// Métodos de "Fila"
 	public void adiciona(T adicionado) {
 
 		if (adicionado == null)
@@ -108,8 +114,8 @@ public class FilaEncadeada<T> implements Fila<T>{
 			return this.inicio.dado;
 		}
 	}
-	
-	//Métodos de "Object"
+
+	// Métodos de "Object"
 	@Override
 	public Object clone() {
 		FilaEncadeada<T> filaClone = new FilaEncadeada<>();
