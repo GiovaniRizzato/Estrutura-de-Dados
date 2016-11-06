@@ -1,6 +1,6 @@
 package br.edu.udc.ed.mapa;
 
-import br.edu.udc.ed.vetor.Vetor;
+import br.edu.udc.ed.lista.vetor.Vetor;
 
 public class Mapa<C, V> {
 

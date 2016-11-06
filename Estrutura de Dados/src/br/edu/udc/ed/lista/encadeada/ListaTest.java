@@ -1,32 +1,33 @@
-package br.edu.udc.ed.lista;
+package br.edu.udc.ed.lista.encadeada;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.edu.udc.ed.vetor.Vetor;
+import br.edu.udc.ed.lista.vetor.Vetor;
 
 public class ListaTest {
 
 	@Test
 	public void adiciona_CasoFeliz() {
 
-		Lista<Integer> lista = new Lista<>();
-		Vetor<Integer> vetor = new Vetor<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 
 		for (int i = 0; i < 15; i++) {
 			lista.adiciona(i);
-			vetor.adiciona(i);
 		}
 
 		assertEquals(15, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+
+		for (Integer i = 0; i < 15; i++) {
+			assertEquals(i, lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void adiciona_inicio() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -35,13 +36,15 @@ public class ListaTest {
 		}
 
 		assertEquals(15, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void adiciona_meio() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -58,13 +61,15 @@ public class ListaTest {
 		vetor.adiciona(10, 5);
 
 		assertEquals(18, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void adiciona_vetor() {
-		Lista<Integer> listaFor = new Lista<>();
-		Lista<Integer> listaVetor = new Lista<>();
+		ListaEncadeada<Integer> listaFor = new ListaEncadeada<>();
+		ListaEncadeada<Integer> listaVetor = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -82,7 +87,7 @@ public class ListaTest {
 	@Test(expected = NullPointerException.class)
 	public void adiciona_null() {
 
-		Lista<Object> lista = new Lista<>();
+		ListaEncadeada<Object> lista = new ListaEncadeada<>();
 		lista.adiciona(null);
 
 		fail("NullPointer not triggered");
@@ -92,7 +97,7 @@ public class ListaTest {
 	@Test
 	public void remove_CasoFeliz() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -106,13 +111,15 @@ public class ListaTest {
 		vetor.remove(0);
 
 		assertEquals(13, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void remove_fim() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -126,13 +133,15 @@ public class ListaTest {
 		vetor.remove(vetor.tamanho() - 1);
 
 		assertEquals(13, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void remove_meio() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -146,12 +155,14 @@ public class ListaTest {
 		vetor.remove(10);
 
 		assertEquals(13, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void remove_ListaVazia() {
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		lista.remove(0);
 
 		fail("RunTime not triggered");
@@ -160,7 +171,7 @@ public class ListaTest {
 	// Consulta
 	@Test
 	public void consulta_CasoFeliz() {
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 
 		for (int i = 0; i < 15; i++) {
 			lista.adiciona(i);
@@ -174,7 +185,7 @@ public class ListaTest {
 	@Test
 	public void consulta_null() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		assertNull(lista.obtem(0));
 	}
 }

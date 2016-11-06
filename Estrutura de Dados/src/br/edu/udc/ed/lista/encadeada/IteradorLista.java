@@ -1,13 +1,13 @@
-package br.edu.udc.ed.lista;
+package br.edu.udc.ed.lista.encadeada;
 
 import br.edu.udc.ed.iteradores.IteradorManipulador;
 
 class IteratorLista<T> implements IteradorManipulador<T> {
 
 	private No<T> cursor;
-	private Lista<T> referenciaLista;
+	private ListaEncadeada<T> referenciaLista;
 
-	IteratorLista(No<T> no, Lista<T> lista) {
+	IteratorLista(No<T> no, ListaEncadeada<T> lista) {
 
 		this.cursor = no;
 		this.referenciaLista = lista;

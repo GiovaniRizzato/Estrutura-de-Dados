@@ -1,4 +1,4 @@
-package br.edu.udc.ed.fila;
+package br.edu.udc.ed.fila.encadeada;
 
 class No<T> {
 

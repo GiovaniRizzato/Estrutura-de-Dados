@@ -1,4 +1,4 @@
-package br.edu.udc.ed.lista;
+package br.edu.udc.ed.lista.encadeada;
 
 import static org.junit.Assert.*;
 
@@ -6,13 +6,13 @@ import org.junit.Test;
 
 import br.edu.udc.ed.iteradores.Iterador;
 import br.edu.udc.ed.iteradores.IteradorManipulador;
-import br.edu.udc.ed.vetor.Vetor;
+import br.edu.udc.ed.lista.vetor.Vetor;
 
 public class IteradorListaTest {
 
 	@Test
 	public void navegcao_CasoFeliz() {
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 
 		for (int i = 0; i < 15; i++) {
 			lista.adiciona(i);
@@ -35,7 +35,7 @@ public class IteradorListaTest {
 	@Test
 	public void adicionarAntes_CasoFeliz() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 1; i < 15; i++) {
@@ -49,13 +49,12 @@ public class IteradorListaTest {
 		}
 
 		assertEquals(15, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
 	}
 
 	@Test
 	public void adicionarDepois_CasoFeliz() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		vetor.adiciona(0);
@@ -69,13 +68,15 @@ public class IteradorListaTest {
 		}
 
 		assertEquals(15, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void adiciona_null() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		IteradorManipulador<Integer> it = lista.inicio();
 		it.adicionaAntes(null);
 
@@ -85,7 +86,7 @@ public class IteradorListaTest {
 	// REMOVER
 	@Test
 	public void remove_CasoFeliz_meio() {
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 7; i++) {
@@ -102,12 +103,14 @@ public class IteradorListaTest {
 		}
 
 		assertEquals(6, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void remove_CasoFeliz_comeco() {
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 7; i++) {
@@ -124,12 +127,14 @@ public class IteradorListaTest {
 		}
 
 		assertEquals(6, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test
 	public void remove_CasoFeliz_fim() {
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 7; i++) {
@@ -146,13 +151,15 @@ public class IteradorListaTest {
 		}
 
 		assertEquals(6, lista.tamanho());
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void remove_listaVazia() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		IteradorManipulador<Integer> it = lista.inicio();
 		it.remove();
 
@@ -162,7 +169,7 @@ public class IteradorListaTest {
 	@Test
 	public void remove_tudo() {
 
-		Lista<Integer> lista = new Lista<>();
+		ListaEncadeada<Integer> lista = new ListaEncadeada<>();
 		Vetor<Integer> vetor = new Vetor<>();
 
 		for (int i = 0; i < 15; i++) {
@@ -178,6 +185,8 @@ public class IteradorListaTest {
 			}
 		}
 
-		assertEquals(vetor, lista.toVetor());
+		for (int i = 0; i < vetor.tamanho(); i++) {
+			assertEquals(vetor.obtem(i), lista.obtem(i));
+		}
 	}
 }

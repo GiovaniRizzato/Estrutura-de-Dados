@@ -1,4 +1,4 @@
-package br.edu.udc.ed.vetor;
+package br.edu.udc.ed.lista.vetor;
 
 import br.edu.udc.ed.iteradores.Iterador;
 

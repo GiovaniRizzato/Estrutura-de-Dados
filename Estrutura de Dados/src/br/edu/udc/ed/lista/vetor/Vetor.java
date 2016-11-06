@@ -1,11 +1,11 @@
-package br.edu.udc.ed.vetor;
+package br.edu.udc.ed.lista.vetor;
 
 import java.util.Random;
-
-import br.edu.udc.ed.icollection.EuColecao;
+import br.edu.udc.ed.icollection.ColecaoIteravel;
 import br.edu.udc.ed.iteradores.Iterador;
+import br.edu.udc.ed.lista.Lista;
 
-public class Vetor<T> implements EuColecao<T> {
+public class Vetor<T> implements Lista<T> {
 
 	@SuppressWarnings("unchecked")
 	private T vetor[] = (T[]) new Object[100];
@@ -37,7 +37,7 @@ public class Vetor<T> implements EuColecao<T> {
 		this.tamanho++;
 	}
 
-	public void adiciona(EuColecao<T> colecao) {
+	public void adiciona(ColecaoIteravel<T> colecao) {
 		
 		Iterador<T> it = colecao.inicio();
 		while (it.temProximo()) {

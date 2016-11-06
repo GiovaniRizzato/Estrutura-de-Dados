@@ -1,4 +1,4 @@
-package br.edu.udc.ed.fila;
+package br.edu.udc.ed.fila.encadeada;
 
 import br.edu.udc.ed.iteradores.Iterador;
 

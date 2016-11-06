@@ -1,8 +1,8 @@
 package br.edu.udc.ed.ordenacao;
 
-import br.edu.udc.ed.icollection.EuColecaoIteravel;
+import br.edu.udc.ed.icollection.ColecaoIteravel;
 
-public interface EuColecaoOrdenavel<T> extends EuColecaoIteravel<T> {
+public interface EuColecaoOrdenavel<T> extends ColecaoIteravel<T> {
 
 	public void ordenaCrescnete();
 

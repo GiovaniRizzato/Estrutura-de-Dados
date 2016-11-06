@@ -1,4 +1,4 @@
-package br.edu.udc.ed.vetor;
+package br.edu.udc.ed.lista.vetor;
 
 public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 

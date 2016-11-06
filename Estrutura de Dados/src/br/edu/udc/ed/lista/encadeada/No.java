@@ -1,4 +1,4 @@
-package br.edu.udc.ed.lista;
+package br.edu.udc.ed.lista.encadeada;
 
 class No<T> {
 	public No<T> anterior;

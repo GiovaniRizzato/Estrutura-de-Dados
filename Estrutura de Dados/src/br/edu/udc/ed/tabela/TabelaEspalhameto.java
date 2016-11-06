@@ -1,7 +1,7 @@
 package br.edu.udc.ed.tabela;
 
 import br.edu.udc.ed.iteradores.Iterador;
-import br.edu.udc.ed.vetor.Vetor;
+import br.edu.udc.ed.lista.vetor.Vetor;
 
 public class TabelaEspalhameto<T> {
 	private Vetor<Vetor<T>> tabela = new Vetor<Vetor<T>>();
