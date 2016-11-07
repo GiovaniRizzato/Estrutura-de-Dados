@@ -2,8 +2,10 @@ package br.edu.udc.ed.lista.vetor;
 
 import br.edu.udc.ed.lista.Lista;
 
-public class ConjuntoAmostral<T extends Float> extends Vetor<T> {
-
+public class ConjuntoAmostral<T extends Integer> extends Vetor<T> {
+	
+	//TODO ConjuntoAmostral - fazer o java entender que "Number" é comparavel e suporte +=
+	
 	private Lista<T> produzirRol() {
 
 		Lista<T> rol = super.clone();
@@ -28,8 +30,6 @@ public class ConjuntoAmostral<T extends Float> extends Vetor<T> {
 	}
 
 	public float media() {
-
-		// TODO Fazer com que o java entenda que <T> é numérico
 
 		Float somatorio = 0F;
 

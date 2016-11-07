@@ -1,6 +1,8 @@
 package br.edu.udc.ed.lista;
 
-public interface Ordenavel<T> extends Lista<T> {
+import br.edu.udc.ed.colecao.Comparavel;
+
+public interface Ordenavel<T extends Comparavel> extends Lista<T> {
 
 	public void organizaCrascente();
 

@@ -1,6 +1,7 @@
 package br.edu.udc.ed.lista;
 
 import br.edu.udc.ed.colecao.ColecaoIteravel;
+import br.edu.udc.ed.iteradores.IteradorManipulador;
 
 public interface Lista<T> extends ColecaoIteravel<T> {
 
@@ -13,4 +14,7 @@ public interface Lista<T> extends ColecaoIteravel<T> {
 	public T obtem(int posicao);
 
 	public void remove(int posicao);
+	
+	@Override
+	public IteradorManipulador<T> inicio();
 }

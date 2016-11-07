@@ -4,6 +4,7 @@ import java.util.Random;
 
 import br.edu.udc.ed.colecao.ColecaoIteravel;
 import br.edu.udc.ed.iteradores.Iterador;
+import br.edu.udc.ed.iteradores.IteradorManipulador;
 import br.edu.udc.ed.lista.Lista;
 
 public class Vetor<T> implements Lista<T> {
@@ -15,7 +16,7 @@ public class Vetor<T> implements Lista<T> {
 	private int tamanho = 0;
 
 	@Override
-	public Iterador<T> inicio() {
+	public IteradorManipulador<T> inicio() {
 		return new IteradorVetor<>(0, this);
 	}
 
