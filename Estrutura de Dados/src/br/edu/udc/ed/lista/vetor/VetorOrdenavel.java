@@ -14,7 +14,8 @@ public class VetorOrdenavel<T extends Comparavel> extends Vetor<T> implements Or
 				// procura desde elemento para frente, pois, os anteriores já
 				// foram processador e são menores.
 
-				if (super.obtem(posicaoTroca).menor(super.obtem(procurador))) {
+				final int resultadoComparacao = super.obtem(posicaoTroca).comparaCom(super.obtem(procurador));
+				if (resultadoComparacao < 0) {
 					// procura a posicao de um elemento menor da lista de i~"fim
 					// do vetor"
 					posicaoTroca = procurador;
@@ -35,7 +36,8 @@ public class VetorOrdenavel<T extends Comparavel> extends Vetor<T> implements Or
 				// procura desde elemento para frente, pois, os anteriores já
 				// foram processador e são menores.
 
-				if (super.obtem(posicaoTroca).maior(super.obtem(procurador))) {
+				final int resultadoComparacao = super.obtem(posicaoTroca).comparaCom(super.obtem(procurador));
+				if (resultadoComparacao < 0) {
 					// procura a posicao de um elemento menor da lista de i~"fim
 					// do vetor"
 					posicaoTroca = procurador;

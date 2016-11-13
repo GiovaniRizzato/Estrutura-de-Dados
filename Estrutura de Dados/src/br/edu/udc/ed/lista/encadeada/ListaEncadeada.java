@@ -148,8 +148,10 @@ public class ListaEncadeada<T> implements Lista<T> {
 			inicio = fim = null;
 			this.tamanho--;
 		}
+		
+		posicao--;
 
-		if (posicao <= 1) {// remover o primeiro elemento da lista
+		if (posicao <= 0) {// remover o primeiro elemento da lista
 			inicio = inicio.proximo;
 			inicio.anterior = null;
 
@@ -160,9 +162,10 @@ public class ListaEncadeada<T> implements Lista<T> {
 		} else {// remover um elemento no meio da lista
 
 			No<T> cursor = inicio;
-			while (posicao > 0) {
+			int posicaoCursor = posicao;
+			while (posicaoCursor > 0) {
 				cursor = cursor.proximo;
-				posicao--;
+				posicaoCursor--;
 			}
 			// remover o elemento cursor
 			cursor.anterior.proximo = cursor.proximo;
