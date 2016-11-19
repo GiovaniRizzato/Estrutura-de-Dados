@@ -141,28 +141,32 @@ public class ListaEncadeada<T> implements Lista<T> {
 	public void remove(int posicao) {
 
 		if (inicio == null) {// se a lista está vazia
-			throw new RuntimeException("Fila está vazia! Não há elementos para remover");
+			throw new RuntimeException("Lista está vazia! Não há elementos para remover");
 		}
 
 		if (inicio == fim) {// se existe apenas um elemento na lista
 			inicio = fim = null;
 			this.tamanho--;
+			return;
 		}
-		
-		posicao--;
 
-		if (posicao <= 0) {// remover o primeiro elemento da lista
+		final int posicaoReal = posicao - 1;
+
+		if (posicaoReal <= 0) {
+			// remover o primeiro elemento da lista
 			inicio = inicio.proximo;
 			inicio.anterior = null;
 
-		} else if (posicao >= tamanho) {// remover o último elemento da lista
+		} else if (posicaoReal >= tamanho) {
+			// remover o último elemento da lista
 			fim = fim.anterior;
 			fim.proximo = null;
 
-		} else {// remover um elemento no meio da lista
+		} else {
+			// remover um elemento no meio da lista
 
 			No<T> cursor = inicio;
-			int posicaoCursor = posicao;
+			int posicaoCursor = posicaoReal;
 			while (posicaoCursor > 0) {
 				cursor = cursor.proximo;
 				posicaoCursor--;
@@ -173,7 +177,7 @@ public class ListaEncadeada<T> implements Lista<T> {
 		}
 		this.tamanho--;
 	}
-	
+
 	// Métodos de "Object"
 	@Override
 	@SuppressWarnings("unchecked")

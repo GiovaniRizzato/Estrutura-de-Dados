@@ -15,7 +15,7 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 
 	@Override
 	public void proximo() {
-		if (cursor != null) {
+		if (this.cursor != null) {
 			this.cursor = this.cursor.proximo;
 		} else {
 			throw new NullPointerException("Não existe proximo para ser iterado");
@@ -24,15 +24,21 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 
 	@Override
 	public boolean temProximo() {
+
 		if (this.cursor != null) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	@Override
 	public T getDado() {
-		return this.cursor.dado;
+		if (this.cursor != null) {
+			return this.cursor.dado;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -106,10 +112,10 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 
 			// Posiciona o cursor em outro elemento para que
 			// noRemovido seja deletado
-			if (noRemovido.proximo != null) {
-				this.cursor = this.cursor.proximo;
-			} else {
+			if (noRemovido.anterior != null) {
 				this.cursor = this.cursor.anterior;
+			} else {
+				this.cursor = this.cursor.proximo;
 			}
 
 			// removendo das referencias do "proximo"
@@ -128,5 +134,10 @@ class IteratorLista<T> implements IteradorManipulador<T> {
 			}
 		}
 		this.referenciaLista.tamanho--;
+	}
+
+	@Override
+	public Object clone(){
+		return new IteratorLista<T>(this.cursor, this.referenciaLista);
 	}
 }

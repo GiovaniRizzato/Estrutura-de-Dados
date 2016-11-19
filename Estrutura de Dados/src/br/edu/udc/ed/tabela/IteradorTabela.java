@@ -49,4 +49,9 @@ class IteradorTabela<T> implements Iterador<T> {
 		return this.iterador.getDado();
 	}
 
+	@Override
+	public Object clone() {
+		return new IteradorTabela<T>(this.referenciaTabela, this.vetorAtual, this.indexGeral);
+	}
+
 }

@@ -9,4 +9,6 @@ public interface Iterador<T> {
 
 	// MANIPULÇAO DE DADOS
 	public T getDado();
+
+	public Object clone();
 }

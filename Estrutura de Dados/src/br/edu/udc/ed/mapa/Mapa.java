@@ -50,17 +50,28 @@ public class Mapa<C, V> {
 	}
 
 	public void adiciona(C chave, V valor) {
-		if (this.contem(chave)) {
-			throw new IllegalArgumentException("Chave já cadastrada");
-		}
 
 		final int indice = this.calculaIndice(chave);
 		final Vetor<Associacao<C, V>> vetor = this.tabela.obtem(indice);
 
-		vetor.adiciona(new Associacao<C, V>(chave, valor));
-		this.tamanho++;
+		if (this.contem(chave)) {
+			// procura a posicao de sobreposição
+			for (int i = 0; i < vetor.tamanho(); i++) {
 
-		this.verificaCapacidade();
+				final Associacao<C, V> associacao = vetor.obtem(i);
+				if (associacao.getChave().equals(chave)) {
+
+					// cria nova associação com a mesma chave e novo valor
+					final Associacao<C, V> novaAssociacao = new Associacao<>(chave, valor);
+					vetor.sobrepoemPosicao(novaAssociacao, i);
+					return;
+				}
+			}
+		} else {
+			vetor.adiciona(new Associacao<C, V>(chave, valor));
+			this.tamanho++;
+			this.verificaCapacidade();
+		}
 	}
 
 	public int tamanho() {
@@ -131,6 +142,57 @@ public class Mapa<C, V> {
 		}
 		return todosObjetos;
 	}
+
+	public Vetor<C> todasChaves() {
+		Vetor<C> conjunto = new Vetor<>();
+
+		for (int i = 0; i < this.tabela.tamanho(); i++) {
+
+			final Vetor<Associacao<C, V>> vetor = this.tabela.obtem(i);
+			for (int j = 0; j < vetor.tamanho(); j++) {
+
+				final Associacao<C, V> associacao = vetor.obtem(j);
+				conjunto.adiciona(associacao.getChave());
+			}
+		}
+
+		return conjunto;
+	}
+	
+	public Vetor<V> todosValores() {
+		Vetor<V> conjunto = new Vetor<>();
+
+		for (int i = 0; i < this.tabela.tamanho(); i++) {
+
+			final Vetor<Associacao<C, V>> vetor = this.tabela.obtem(i);
+			for (int j = 0; j < vetor.tamanho(); j++) {
+
+				final Associacao<C, V> associacao = vetor.obtem(j);
+				conjunto.adiciona(associacao.getValor());
+			}
+		}
+
+		return conjunto;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuffer acomulador = new StringBuffer();
+
+		for (int i = 0; i < this.tabela.tamanho(); i++) {
+
+			final Vetor<Associacao<C, V>> vetor = this.tabela.obtem(i);
+			for (int j = 0; j < vetor.tamanho(); j++) {
+
+				final Associacao<C, V> associacao = vetor.obtem(j);
+				acomulador.append(associacao.toString());
+				acomulador.append(String.format("\n"));
+			}
+		}
+
+		return acomulador.toString();
+	}
+
 
 	public void imprimir() {
 

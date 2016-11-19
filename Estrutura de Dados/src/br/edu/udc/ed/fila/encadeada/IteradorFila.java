@@ -32,4 +32,9 @@ class IteradorFila<T> implements Iterador<T> {
 	public T getDado() {
 		return this.referenciaFila.consulta();
 	}
+
+	@Override
+	public Object clone() {
+		return new IteradorFila<>(this.referenciaFila, this.iteracoesPodemSerFeitas);
+	}
 }

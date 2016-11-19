@@ -51,4 +51,9 @@ class IteradorVetor<T> implements IteradorManipulador<T> {
 			this.index = this.referenciaVetor.tamanho();
 		}
 	}
+
+	@Override
+	public Object clone() {
+		return new IteradorVetor<>(this.index, this.referenciaVetor);
+	}
 }
