@@ -25,6 +25,7 @@ public class Diretorio {
 		this.getPai().getFilhos().adiciona(this);
 
 		this.tamanho = 0;
+		// para que ocorra o "incremento" corretamente dos nós acima
 		this.setTamanho(tamanho);
 	}
 
@@ -52,7 +53,7 @@ public class Diretorio {
 		return this.tamanho;
 	}
 
-	private void setTamanho(int novoTamanho) {
+	public void setTamanho(int novoTamanho) {
 		final int incremento = novoTamanho - this.tamanho;
 		this.tamanho = novoTamanho;
 
@@ -61,9 +62,16 @@ public class Diretorio {
 
 	private void incrementaTamanho(int incremeneto) {
 		this.tamanho += incremeneto;
-		if (this.getPai() != null) {
+		if (this.getPai() != null) {// enquanto não for raíz
 			this.getPai().incrementaTamanho(incremeneto);
 		}
+	}
+
+	public Diretorio adicionar(Data dataCriacao, String nome, int tamanho) {
+
+		final Diretorio novoDiretorio = new Diretorio(dataCriacao, nome, tamanho, this);
+		this.filhos.adiciona(novoDiretorio);
+		return novoDiretorio;
 	}
 
 	public void ordenaFilhos() {
@@ -81,6 +89,8 @@ public class Diretorio {
 	}
 
 	public int compararCom(Diretorio comparado) {
+
+		final String nomeComparado = comparado.getNome();
 		for (int i = 0; i > this.getNome().length(); i++) {
 
 			if (i > comparado.getNome().length()) {
@@ -89,13 +99,44 @@ public class Diretorio {
 				return 1;
 			}
 
-			final char letraInterno = this.getNome().charAt(i);
-			final char letraComparado = comparado.getNome().charAt(i);
+			final char letraInterno = this.nome.charAt(i);
+			final char letraComparado = nomeComparado.charAt(i);
 			if (letraInterno != letraComparado) {
 				return letraInterno - letraComparado;
 			}
 		}
 
 		return 0;
+	}
+
+	public int profundidade() {
+
+		Diretorio cursor = this;
+		int profundidade = 1;
+		while (cursor.getPai() != null) {
+			cursor = cursor.getPai();
+			profundidade++;
+		}
+
+		return profundidade;
+	}
+
+	@Override
+	public String toString() {
+		String[] caminho = new String[this.profundidade()];
+
+		Diretorio cursor = this;
+		for (int i = 0; i < this.profundidade(); i++) {
+			caminho[i] = cursor.getNome();
+			cursor = cursor.getPai();
+		}
+
+		StringBuffer acomulador = new StringBuffer();
+		for (int i = (this.profundidade() - 1); i > -1; i--) {
+			acomulador.append(caminho[i]);
+			acomulador.append("/");
+		}
+
+		return acomulador.substring(0, acomulador.length() - 1);
 	}
 }
