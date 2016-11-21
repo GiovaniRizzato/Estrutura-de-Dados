@@ -94,7 +94,7 @@ public abstract class NodoAbstrato<E> {
 
 	public int altura() {
 		if (this.externo()) {
-			return 0;
+			return 1;
 		}
 
 		int maiorAltura = 0;
