@@ -203,23 +203,29 @@ public abstract class NodoAbstrato<E> {
 
 	@Override
 	public String toString() {
-		StringBuffer acomulador = new StringBuffer();
-		acomulador.append(this.elemento.toString());
 
-		if (this.getFilhos().tamanho() > 0) {
-			acomulador.append("{ ");
+		if (this.externo()) {
+			return this.getElemento().toString();
 
-			Iterador<NodoAbstrato<E>> i = this.getFilhos().inicio();
-			while (i.temProximo()) {
-				i.getDado().toString();
-				acomulador.append(" ");
-				i.proximo();
+		} else {
+			StringBuffer principal = new StringBuffer();
+			principal.append(this.elemento.toString());
+
+			principal.append("{");
+
+			StringBuffer filhos = new StringBuffer();
+			Iterador<NodoAbstrato<E>> it = this.getFilhos().inicio();
+			while (it.temProximo()) {
+				filhos.append(it.getDado().toString());
+				filhos.append(", ");
+				it.proximo();
 			}
 
-			acomulador.append("}");
-		}
+			principal.append(filhos.substring(0, filhos.length() - 2));
+			principal.append("}");
 
-		return acomulador.toString();
+			return principal.toString();
+		}
 	}
 
 	@Override
