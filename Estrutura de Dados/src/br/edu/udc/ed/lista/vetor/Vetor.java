@@ -185,22 +185,19 @@ public class Vetor<T> implements Lista<T> {
 	@Override
 	public String toString() {
 
-		StringBuffer stringAcomulador = new StringBuffer();
-
-		stringAcomulador.append("[");
+		StringBuffer acomulador = new StringBuffer();
+		acomulador.append("[");
 
 		// Acomula os numeros dentro dos conchets
+		StringBuffer elementos = new StringBuffer();
 		for (int i = 0; i < this.tamanho; i++) {
-			stringAcomulador.append(vetor[i].toString());
-			stringAcomulador.append(",");
+			elementos.append(vetor[i].toString());
+			elementos.append(", ");
 		}
 
-		if (stringAcomulador.charAt(stringAcomulador.length() - 1) == ',') {
-			stringAcomulador.deleteCharAt(stringAcomulador.length() - 1);
-		}
+		acomulador.append(elementos.substring(0, elementos.length() - 2));
+		acomulador.append("]");
 
-		stringAcomulador.append("]");
-
-		return stringAcomulador.toString();
+		return acomulador.toString();
 	}
 }

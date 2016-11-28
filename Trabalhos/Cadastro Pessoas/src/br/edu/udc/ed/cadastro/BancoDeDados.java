@@ -163,21 +163,15 @@ public class BancoDeDados {
 
 		return conjunto;
 	}
-	
-	@Override
-	public String toString(){
-		StringBuffer acomulador = new StringBuffer();
 
+	@Override
+	public String toString() {
+
+		StringBuffer acomulador = new StringBuffer();
 		for (int i = 0; i < this.tabela.tamanho(); i++) {
 
 			final Vetor<Cadastro> vetor = this.tabela.obtem(i);
-			for (int j = 0; j < vetor.tamanho(); j++) {
-
-				final Cadastro cadastro = vetor.obtem(j);
-				acomulador.append(cadastro.toString());
-				acomulador.append(String.format(", "));
-			}
-			
+			acomulador.append(vetor.toString());
 			acomulador.append(String.format("\n"));
 		}
 
