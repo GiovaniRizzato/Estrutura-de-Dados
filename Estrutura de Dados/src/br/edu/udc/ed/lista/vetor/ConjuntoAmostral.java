@@ -2,10 +2,8 @@ package br.edu.udc.ed.lista.vetor;
 
 import br.edu.udc.ed.lista.Lista;
 
-public class ConjuntoAmostral<T extends Integer> extends Vetor<T> {
-	
-	//TODO ConjuntoAmostral - fazer o java entender que "Number" é comparavel e suporte +=
-	
+public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
+
 	private Lista<T> produzirRol() {
 
 		Lista<T> rol = super.clone();
@@ -16,7 +14,7 @@ public class ConjuntoAmostral<T extends Integer> extends Vetor<T> {
 				// procura desde elemento para frente, pois, os anteriores já
 				// foram processador e são menores.
 
-				if (super.obtem(posicaoTroca) < super.obtem(procurador)) {
+				if (super.obtem(posicaoTroca).doubleValue() < super.obtem(procurador).doubleValue()) {
 					// procura a posicao de um elemento menor da lista de i~"fim
 					// do vetor"
 					posicaoTroca = procurador;
@@ -29,12 +27,12 @@ public class ConjuntoAmostral<T extends Integer> extends Vetor<T> {
 		return rol;
 	}
 
-	public float media() {
+	public double media() {
 
-		Float somatorio = 0F;
+		Double somatorio = 0D;
 
 		for (int i = 0; i < super.tamanho(); i++) {
-			somatorio = somatorio + super.obtem(i);
+			somatorio = somatorio + super.obtem(i).doubleValue();
 		}
 
 		return somatorio / super.tamanho();
@@ -46,7 +44,7 @@ public class ConjuntoAmostral<T extends Integer> extends Vetor<T> {
 		return rol.obtem(rol.tamanho() / 2);
 	}
 
-	public T moda() {
+	public Number moda() {
 
 		Lista<T> rol = this.produzirRol();
 
@@ -70,7 +68,7 @@ public class ConjuntoAmostral<T extends Integer> extends Vetor<T> {
 
 		return super.obtem(posicaoModaAtual);
 	}
-	
+
 	@Override
 	public ConjuntoAmostral<T> clone() {
 		return (ConjuntoAmostral<T>) super.clone();
