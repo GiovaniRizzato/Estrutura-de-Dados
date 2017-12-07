@@ -27,6 +27,12 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 		return rol;
 	}
 
+	public void adiciona(T valor, int frequencia) {
+
+		for (int i = 0; i < frequencia; i++)
+			super.adiciona(valor);
+	}
+
 	public double media() {
 
 		Double somatorio = 0D;
@@ -44,7 +50,7 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 		return rol.obtem(rol.tamanho() / 2);
 	}
 
-	public Number moda() {
+	public T moda() {
 
 		Lista<T> rol = this.produzirRol();
 
@@ -67,6 +73,17 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 		}
 
 		return super.obtem(posicaoModaAtual);
+	}
+
+	public double variancia() {
+
+		double acomulador = 0D;
+		double media = this.media();
+
+		for (int i = 0; i < super.tamanho(); i++)
+			acomulador += Math.pow(media - super.obtem(i).doubleValue(), 2);
+
+		return acomulador / super.tamanho();
 	}
 
 	@Override

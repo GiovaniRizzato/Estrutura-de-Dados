@@ -77,7 +77,6 @@ public abstract class NodoAbstrato<E> {
 	}
 
 	public static <E> int profundidade(NodoAbstrato<E> nodo) {
-		// Alteração do modo para não ser recursivo
 		if (nodo.raiz()) {
 			return 0;
 		}
@@ -124,34 +123,34 @@ public abstract class NodoAbstrato<E> {
 	}
 
 	public static <E> Vetor<NodoAbstrato<E>> caminho(NodoAbstrato<E> nodoOrigem, NodoAbstrato<E> nodoDestino) {
-		final Vetor<NodoAbstrato<E>> nodos = new Vetor<>();
+		final Vetor<NodoAbstrato<E>> caminho = new Vetor<>();
 		if (nodoOrigem.ancestralDe(nodoDestino)) {
-			nodos.adiciona(nodoOrigem);
+			caminho.adiciona(nodoOrigem);
 			final Iterador<NodoAbstrato<E>> i = nodoOrigem.getFilhos().inicio();
 			while (i.temProximo()) {
 				final NodoAbstrato<E> nodoFilho = i.getDado();
 				if (nodoFilho.equals(nodoDestino)) {
-					nodos.adiciona(nodoDestino);
-					return nodos;// achou o destino
+					caminho.adiciona(nodoDestino);
+					return caminho;// achou o destino
 				} else {
-					nodos.adiciona(nodoFilho.caminho(nodoDestino));
+					caminho.adiciona(nodoFilho.caminho(nodoDestino));
 				}
 				i.proximo();
 			}
 		} else if (nodoOrigem.descendenteDe(nodoDestino)) {
 
-			nodos.adiciona(nodoOrigem);
+			caminho.adiciona(nodoOrigem);
 			final NodoAbstrato<E> nodoPai = nodoOrigem.getPai();
 
 			if (nodoPai.equals(nodoDestino)) {
-				nodos.adiciona(nodoDestino);
-				return nodos;// achou o destino
+				caminho.adiciona(nodoDestino);
+				return caminho;// achou o destino
 			} else {
-				nodos.adiciona(nodoPai.caminho(nodoDestino));
+				caminho.adiciona(nodoPai.caminho(nodoDestino));
 			}
 		}
 
-		return nodos;
+		return caminho;
 	}
 
 	public int comprimento(NodoAbstrato<E> nodoDestino) {
