@@ -86,6 +86,10 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 		return acomulador / super.tamanho();
 	}
 
+	public double desvioPadrao() {
+		return Math.sqrt(this.variancia());
+	}
+
 	@Override
 	public ConjuntoAmostral<T> clone() {
 		return (ConjuntoAmostral<T>) super.clone();

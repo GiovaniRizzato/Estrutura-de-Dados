@@ -16,16 +16,16 @@ public class ConjuntoAmostralTest {
 
 		assertEquals(4.6875D, conjunto.variancia(), 0.00009D);
 	}
-	
+
 	@Test
 	public void variancia2() {
 		ConjuntoAmostral<Integer> conjunto = new ConjuntoAmostral<>();
-		conjunto.adiciona(2);
-		conjunto.adiciona(8);
-		conjunto.adiciona(5);
-		conjunto.adiciona(6);
+		conjunto.adiciona(2, 3);
+		conjunto.adiciona(3, 5);
+		conjunto.adiciona(4, 8);
+		conjunto.adiciona(5, 4);
 
-		assertEquals(4.6875D, conjunto.variancia(), 0.00009D);
+		assertEquals(0.9275D, conjunto.variancia(), 0.00009D);
 	}
 
 }
