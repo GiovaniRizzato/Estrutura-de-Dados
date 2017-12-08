@@ -50,7 +50,13 @@ public class FilaEncadeada<T> implements Fila<T> {
 
 	@Override
 	public boolean contem(T object) {
-		// TODO Fila - contem
+		No<T> procurador = this.fim;
+
+		while (procurador.proximo != null)
+			if (procurador.dado.equals(object))
+				return true;
+
+		// Percorreu toda a fila e não encontrou nenhum elemento igual
 		return false;
 	}
 
@@ -81,7 +87,11 @@ public class FilaEncadeada<T> implements Fila<T> {
 	}
 
 	public void adiciona(ColecaoIteravel<T> grupoElementos) {
-		// TODO Fila - adicionar coleção
+
+		final Iterador<T> it = grupoElementos.inicio();
+
+		while (it.temProximo())
+			this.adiciona(it.getDado());
 	}
 
 	public T remove() {
@@ -95,7 +105,7 @@ public class FilaEncadeada<T> implements Fila<T> {
 			noRemovido = this.fim;
 			this.fim = this.inicio = null;
 
-		} else {
+		} else {// Possui varios elementos na lista
 			noRemovido = this.inicio;
 			this.inicio = this.inicio.anterior;
 			this.inicio.proximo = null;
