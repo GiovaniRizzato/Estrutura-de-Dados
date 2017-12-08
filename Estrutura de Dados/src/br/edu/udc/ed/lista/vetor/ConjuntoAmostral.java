@@ -78,7 +78,7 @@ public class ConjuntoAmostral<T extends Number> extends Vetor<T> {
 	public double variancia() {
 
 		double acomulador = 0D;
-		double media = this.media();
+		final double media = this.media();
 
 		for (int i = 0; i < super.tamanho(); i++)
 			acomulador += Math.pow(media - super.obtem(i).doubleValue(), 2);
